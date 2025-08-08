@@ -26,6 +26,11 @@ async function bootstrap(){
     app.use(passport.initialize());
     app.use(passport.session());
 
+    app.use((req, res, next) => {
+        console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+        next();
+    });
+
     app.use(cors({
     origin: process.env.CLIENT_HOME_PAGE_URL || 'http://localhost:3000',
     credentials: true,
