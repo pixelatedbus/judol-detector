@@ -27,7 +27,7 @@ async function bootstrap(){
     app.use(passport.session());
 
     app.use(cors({
-    origin: true,
+    origin: process.env.CLIENT_HOME_PAGE_URL || 'http://localhost:3000',
     credentials: true,
 }));
 
