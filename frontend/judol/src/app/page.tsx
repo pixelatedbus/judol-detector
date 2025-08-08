@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { processPatternsFile, processCommentsFile } from './fileProcessor';
 
 // --- Constants ---
-const API_BASE_URL ='http://judol-detector-firefly.up.railway.app/api';
+const API_BASE_URL = 'https://judol-detector-firefly.up.railway.app/api';
 
 // --- Type Definitions ---
 interface Comment {
