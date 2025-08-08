@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-image: url('https://cdn.antaranews.com/cache/1200x800/2024/11/28/Ilustrasi-Judol.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #1f2937;
+    position: relative;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(243, 244, 246, 0.85);
+    z-index: -1;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e5e7eb;
+    backdrop-filter: blur(4px);
+}
+
+.btn-google {
+    background-color: #4285F4;
+    color: white;
+}
+.btn-google:hover {
+    background-color: #357ae8;
+}
+
+.btn-danger {
+    background-color: #db4437;
+    color: white;
+}
+.btn-danger:hover {
+    background-color: #c23327;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
