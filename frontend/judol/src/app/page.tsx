@@ -53,7 +53,7 @@ const HomePage: React.FC = () => {
                     }
                 }
             } catch (err) {
-                console.error("Could not fetch auth status");
+                console.error("Could not fetch auth status", err);
             }
         };
         checkAuthStatus();
@@ -102,8 +102,12 @@ const HomePage: React.FC = () => {
             const foundComments = await res.json();
             setComments(foundComments);
 
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("An unknown error occurred.");
+            }
         } finally {
             setIsLoading(false);
         }
@@ -137,8 +141,12 @@ const HomePage: React.FC = () => {
             }
             alert("Batch comments posted successfully!");
 
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("An unknown error occurred.");
+            }
         } finally {
             setIsLoading(false);
         }
@@ -160,8 +168,12 @@ const HomePage: React.FC = () => {
             // Remove the deleted comment from the state
             setComments(prev => prev.filter(c => c.id !== commentId));
 
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("An unknown error occurred.");
+            }
         }
     };
 
@@ -179,8 +191,12 @@ const HomePage: React.FC = () => {
         try {
             await Promise.all(deletePromises);
             setComments([]); // Clear comments on successful deletion
-        } catch (err: any) {
-            setError("Failed to delete all comments. Some may have been removed.");
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("An unknown error occurred. Some comments may not have been deleted.");
+            }
         } finally {
             setIsLoading(false);
         }
