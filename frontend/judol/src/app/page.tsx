@@ -92,6 +92,7 @@ const HomePage: React.FC = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ method: algorithm, patterns }),
+                credentials: 'include',
             });
 
             if (!res.ok) {

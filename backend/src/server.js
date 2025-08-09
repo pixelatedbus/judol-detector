@@ -19,7 +19,9 @@ async function bootstrap(){
         resave: false,
         saveUninitialized: false,
         cookie: {
-            maxAge: 24 * 60 * 60 * 1000 
+            maxAge: 24 * 60 * 60 * 1000, 
+            sameSite: 'none',
+            secure: true
         }
     }));
 
@@ -32,7 +34,7 @@ async function bootstrap(){
     });
 
     app.use(cors({
-    origin: process.env.CLIENT_HOME_PAGE_URL || 'http://localhost:3000',
+    origin: process.env.CLIENT_HOME_PAGE_URL || 'https://localhost:3000',
     credentials: true,
 }));
 
