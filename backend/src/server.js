@@ -14,15 +14,6 @@ async function bootstrap(){
 
     app.use(express.json());
 
-    app.use(session({
-        secret: process.env.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            maxAge: 24 * 60 * 60 * 1000 
-        }
-    }));
-
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -36,6 +27,19 @@ async function bootstrap(){
     credentials: true,
 }));
 
+    app.use(session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        proxy: true,
+        cookie: {
+            maxAge: 24 * 60 * 60 * 1000 ,
+            sameSite: 'none',
+            secure: true
+        }
+    }));
+
+    app.set('trust proxy', 1);
 
 
     app.use('/api/auth', authRoutes);
