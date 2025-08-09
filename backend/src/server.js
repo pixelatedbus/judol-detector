@@ -14,19 +14,6 @@ async function bootstrap(){
 
     app.use(express.json());
 
-    app.use(passport.initialize());
-    app.use(passport.session());
-
-    app.use((req, res, next) => {
-        console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
-        next();
-    });
-
-    app.use(cors({
-    origin: process.env.CLIENT_HOME_PAGE_URL || 'https://localhost:3000',
-    credentials: true,
-}));
-
     app.use(session({
         secret: process.env.SESSION_SECRET,
         resave: false,
@@ -41,6 +28,18 @@ async function bootstrap(){
 
     app.set('trust proxy', 1);
 
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    app.use((req, res, next) => {
+        console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+        next();
+    });
+
+    app.use(cors({
+    origin: process.env.CLIENT_HOME_PAGE_URL || 'https://localhost:3000',
+    credentials: true,
+}));
 
     app.use('/api/auth', authRoutes);
     app.use('/api/processing', processingRoutes);
