@@ -14,17 +14,12 @@ router.get(
 );
 
 router.get('/status', (req, res) => {
+  console.log('Session:', req.session);
+  console.log('User:', req.user);
   if (req.user) {
-    res.status(200).json({
-      success: true,
-      message: 'User is authenticated',
-      user: req.user,
-    });
+    res.status(200).json({ success: true, user: req.user });
   } else {
-    res.status(405).json({
-      success: false,
-      message: 'User is not authenticated',
-    });
+    res.status(405).json({ success: false, message: 'User is not authenticated' });
   }
 });
 
