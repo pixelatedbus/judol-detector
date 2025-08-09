@@ -36,6 +36,8 @@ async function bootstrap(){
     credentials: true,
 }));
 
+
+
     app.use('/api/auth', authRoutes);
     app.use('/api/processing', processingRoutes);
 
